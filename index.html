@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Namu — Real Estate with Miyoung Nancarrow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:      #F9F5F0;
+      --warm-white: #FDFAF6;
+      --sage:       #8B9E7E;
+      --deep-sage:  #5C7A4E;
+      --forest:     #2D4A2A;
+      --terra:      #C4785A;
+      --stone:      #C8B89A;
+      --charcoal:   #242424;
+      --gray:       #6B6B6B;
+      --border:     #E5DDD3;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAVIGATION ───────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 5vw;
+      background: rgba(253,250,246,0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(200,184,154,0.25);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 400;
+      letter-spacing: 0.1em; color: var(--forest);
+      text-decoration: none;
+    }
+    .logo em { font-style: italic; color: var(--deep-sage); }
+
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--forest); }
+
+    .nav-btn {
+      background: var(--forest); color: var(--cream) !important;
+      padding: .55rem 1.4rem; border-radius: 2px;
+      transition: background .2s !important;
+    }
+    .nav-btn:hover { background: var(--deep-sage) !important; }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 100vh; padding-top: 72px;
+    }
+
+    .hero-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 3.5rem 6rem 5vw;
+    }
+
+    .eyebrow {
+      display: inline-block; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--terra); margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 4.5vw, 5rem); font-weight: 300;
+      line-height: 1.08; color: var(--forest); margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--deep-sage); }
+
+    .hero-desc {
+      font-size: 1rem; font-weight: 300; color: var(--gray);
+      max-width: 420px; line-height: 1.85; margin-bottom: 2.75rem;
+    }
+
+    .btn-row { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+
+    .btn-solid {
+      display: inline-block; background: var(--forest); color: var(--cream);
+      padding: .9rem 2.25rem; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      border-radius: 2px; transition: background .2s;
+    }
+    .btn-solid:hover { background: var(--deep-sage); }
+
+    .btn-ghost {
+      display: inline-block; color: var(--forest); font-size: 0.8rem;
+      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border-bottom: 1px solid var(--forest);
+      padding-bottom: 2px; transition: color .2s, border-color .2s;
+    }
+    .btn-ghost:hover { color: var(--terra); border-color: var(--terra); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3.5rem;
+      padding-top: 2.75rem; border-top: 1px solid var(--border);
+    }
+    .stat-val {
+      display: block; font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 400; line-height: 1; color: var(--forest);
+    }
+    .stat-lbl {
+      display: block; font-size: 0.7rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--gray); margin-top: .25rem;
+    }
+
+    /* Hero right panel */
+    .hero-panel {
+      position: relative; overflow: hidden;
+      background: linear-gradient(150deg, #8B9E7E 0%, #5C7A4E 45%, #2D4A2A 100%);
+    }
+
+    .hero-panel-label {
+      position: absolute; bottom: 2.5rem; left: 2.5rem; color: rgba(253,250,246,.85);
+    }
+    .hero-panel-label .kor {
+      display: block; font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300; line-height: 1; opacity: .6;
+    }
+    .hero-panel-label .eng {
+      display: block; font-size: 0.72rem; letter-spacing: 0.28em;
+      text-transform: uppercase; margin-top: .25rem; opacity: .7;
+    }
+
+    /* ── TRUST BAR ────────────────────────────────── */
+    .trust-bar {
+      background: var(--forest); padding: 1.1rem 5vw;
+      display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: .55rem;
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(253,250,246,.75);
+    }
+    .trust-item .ico { font-size: 1rem; }
+
+    /* ── ABOUT STRIP ──────────────────────────────── */
+    .about-strip {
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--cream);
+    }
+    .about-visual {
+      background: linear-gradient(135deg, #c4b49a 0%, #8B9E7E 100%);
+      min-height: 420px; display: flex; align-items: flex-end;
+      padding: 2.5rem;
+    }
+    .about-visual-label {
+      color: rgba(253,250,246,0.9);
+    }
+    .about-visual-label .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; display: block; line-height: 1;
+    }
+    .about-visual-label .title {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      opacity: .7; margin-top: .35rem; display: block;
+    }
+    .about-content {
+      padding: 4rem 3.5rem 4rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-content .tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--terra); margin-bottom: .9rem;
+    }
+    .about-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300;
+      color: var(--forest); line-height: 1.15; margin-bottom: 1.25rem;
+    }
+    .about-content h2 em { font-style: italic; color: var(--deep-sage); }
+    .about-content p {
+      font-size: .95rem; font-weight: 300; color: var(--gray);
+      line-height: 1.85; margin-bottom: 1rem; max-width: 440px;
+    }
+    .about-pillars {
+      display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem;
+    }
+    .pill {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: .4rem 1rem;
+      border: 1px solid var(--border); border-radius: 2px; color: var(--forest);
+      background: var(--warm-white);
+    }
+
+    /* ── SECTIONS SHARED ──────────────────────────── */
+    .section { padding: 6rem 5vw; }
+    .section-alt { background: var(--cream); }
+
+    .tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--terra); margin-bottom: .9rem;
+    }
+
+    .section-h {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.25rem); font-weight: 300;
+      color: var(--forest); line-height: 1.12; margin-bottom: 1.1rem;
+    }
+    .section-h em { font-style: italic; color: var(--deep-sage); }
+
+    .section-p {
+      font-size: .95rem; font-weight: 300; color: var(--gray);
+      max-width: 500px; line-height: 1.85;
+    }
+
+    /* ── SERVICES ─────────────────────────────────── */
+    .services-hd { text-align: center; margin-bottom: 4.5rem; }
+    .services-hd .section-p { margin: 0 auto; }
+
+    /* Primary real estate services - 3 col */
+    .re-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Secondary lifestyle services - 3 col */
+    .lifestyle-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.75rem;
+    }
+
+    .svc-card {
+      padding: 2.25rem 1.75rem;
+      background: var(--warm-white);
+      border: 1px solid var(--border); border-radius: 3px;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .svc-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 44px rgba(45,74,42,.09);
+      border-color: var(--sage);
+    }
+    .svc-card.featured {
+      background: var(--forest); border-color: var(--forest); color: var(--cream);
+    }
+    .svc-card.featured h3 { color: var(--cream); }
+    .svc-card.featured p { color: rgba(253,250,246,.7); }
+    .svc-card.featured .svc-icon { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.15); }
+
+    .svc-divider {
+      display: flex; align-items: center; gap: 1.5rem; margin: 2.5rem 0 1.75rem;
+    }
+    .svc-divider::before, .svc-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .svc-divider span {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gray); white-space: nowrap;
+    }
+
+    .svc-icon {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--cream); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; margin-bottom: 1.6rem;
+    }
+
+    .svc-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400; color: var(--forest); margin-bottom: .6rem;
+    }
+    .svc-card p { font-size: .875rem; font-weight: 300; color: var(--gray); line-height: 1.8; }
+
+    /* ── PROCESS ──────────────────────────────────── */
+    .process-wrap {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: start;
+    }
+
+    .steps { margin-top: 3rem; }
+
+    .step {
+      display: flex; gap: 1.75rem; padding-bottom: 2.75rem;
+      margin-bottom: 2.75rem; border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.75rem; font-weight: 300; color: var(--border);
+      line-height: 1; flex-shrink: 0; width: 2.5rem;
+    }
+    .step-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-weight: 400; color: var(--forest); margin-bottom: .4rem;
+    }
+    .step-body p { font-size: .875rem; font-weight: 300; color: var(--gray); line-height: 1.8; }
+
+    .process-visual {
+      background: var(--cream); border: 1px solid var(--border); border-radius: 3px;
+      min-height: 480px; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .tree-svg { opacity: .28; }
+    .process-visual-label {
+      position: absolute; bottom: 2rem; right: 2rem; text-align: right;
+    }
+    .process-visual-label span {
+      display: block; font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--deep-sage); opacity: .6;
+    }
+
+    /* ── TESTIMONIALS ─────────────────────────────── */
+    .testimonials-section { background: var(--forest); }
+    .testimonials-section .tag { color: var(--stone); }
+    .testimonials-section .section-h { color: var(--cream); }
+    .testimonials-section .section-h em { color: var(--stone); }
+
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1.75rem; margin-top: 4rem;
+    }
+
+    .testi-card {
+      padding: 2.25rem;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1); border-radius: 3px;
+    }
+    .testi-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-style: italic; font-weight: 300;
+      line-height: 1.75; color: rgba(253,250,246,.88); margin-bottom: 1.75rem;
+    }
+    .testi-author { display: flex; align-items: center; gap: .9rem; }
+    .testi-avatar {
+      width: 38px; height: 38px; border-radius: 50%; background: var(--deep-sage);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--cream); flex-shrink: 0;
+    }
+    .testi-name { display: block; font-size: .875rem; font-weight: 500; color: var(--cream); }
+    .testi-role { display: block; font-size: .75rem; font-weight: 300; color: rgba(253,250,246,.45); }
+
+    /* ── CTA BANNER ───────────────────────────────── */
+    .cta-section {
+      text-align: center; padding: 8rem 5vw; background: var(--cream);
+    }
+    .cta-section .section-h {
+      font-size: clamp(2.25rem, 4vw, 3.75rem);
+      max-width: 680px; margin: 0 auto 1.25rem;
+    }
+    .cta-section .section-p { margin: 0 auto 2.75rem; text-align: center; }
+    .cta-row { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--charcoal); color: rgba(253,250,246,.55);
+      padding: 4rem 5vw 2rem;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem;
+      padding-bottom: 2.75rem; border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 1.75rem;
+    }
+    .footer-brand .logo { color: var(--cream); display: block; margin-bottom: .9rem; text-decoration: none; }
+    .footer-brand p { font-size: .83rem; font-weight: 300; line-height: 1.85; max-width: 270px; }
+    .footer-col h4 {
+      font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--cream); font-weight: 500; margin-bottom: 1.1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .65rem; }
+    .footer-col ul a {
+      text-decoration: none; font-size: .83rem; font-weight: 300;
+      color: rgba(253,250,246,.45); transition: color .2s;
+    }
+    .footer-col ul a:hover { color: var(--cream); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: .75rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom a { color: rgba(253,250,246,.35); text-decoration: none; transition: color .2s; }
+    .footer-bottom a:hover { color: rgba(253,250,246,.7); }
+    .footer-legal { display: flex; gap: 1.75rem; }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-panel { min-height: 50vw; }
+      .about-strip { grid-template-columns: 1fr; }
+      .about-visual { min-height: 280px; }
+      .re-grid { grid-template-columns: 1fr 1fr; }
+      .lifestyle-grid { grid-template-columns: 1fr 1fr; }
+      .lifestyle-grid .svc-card:last-child { grid-column: span 2; }
+      .process-wrap { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 560px) {
+      .re-grid { grid-template-columns: 1fr; }
+      .lifestyle-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .trust-bar { gap: 1.5rem; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ─────────────────────────────── -->
+  <nav>
+    <a href="#" class="logo">Na<em>mu</em></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#contact" class="nav-btn">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ───────────────────────────────────── -->
+  <div class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">나무 &mdash; Real Estate &amp; Lifestyle</span>
+      <h1>Find a Home<br>Where You Can<br><em>Put Down Roots</em></h1>
+      <p class="hero-desc">
+        Miyoung Nancarrow brings a mindful, whole-life approach to real estate — helping you buy, sell, and settle into a home that truly fits the life you're building.
+      </p>
+      <div class="btn-row">
+        <a href="#services" class="btn-solid">Explore Services</a>
+        <a href="#about" class="btn-ghost">Meet Miyoung</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="stat-val">4.9★</span>
+          <span class="stat-lbl">Client Rating</span>
+        </div>
+        <div>
+          <span class="stat-val">100+</span>
+          <span class="stat-lbl">Homes Closed</span>
+        </div>
+        <div>
+          <span class="stat-val">100%</span>
+          <span class="stat-lbl">Dedicated</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <img src="images/forest-path.png" alt="Forest boardwalk path through tall trees" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+      <div class="hero-panel-label">
+        <span class="kor">나무</span>
+        <span class="eng">Root &mdash; Grow &mdash; Home</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TRUST BAR ──────────────────────────────── -->
+  <div class="trust-bar">
+    <div class="trust-item"><span class="ico">🏡</span> Real Estate</div>
+    <div class="trust-item"><span class="ico">📷</span> Property Photography</div>
+    <div class="trust-item"><span class="ico">🌿</span> Wellness-Centred</div>
+    <div class="trust-item"><span class="ico">✨</span> Lifestyle &amp; Fitness</div>
+  </div>
+
+  <!-- ── ABOUT ──────────────────────────────────── -->
+  <div class="about-strip" id="about">
+    <div class="about-visual" style="background-image:url('images/property.png');background-size:cover;background-position:center;background-color:#5c7a4e;">
+      <div class="about-visual-label">
+        <span class="name">Miyoung Nancarrow</span>
+        <span class="title">Realtor &mdash; Namu</span>
+      </div>
+    </div>
+    <div class="about-content">
+      <span class="tag">About Miyoung</span>
+      <h2>Real Estate,<br><em>Rooted in Purpose</em></h2>
+      <p>Miyoung is a licensed real estate agent who believes finding the right home is one of the most personal decisions you'll ever make. Her background in wellness, fitness, and lifestyle photography gives her a rare ability to see a property through the eyes of the life you want to live.</p>
+      <p>She listens first. Then she works tirelessly — negotiating, navigating, and guiding you every step of the way — until you're holding the keys to a home that feels like <em>you</em>.</p>
+      <div class="about-pillars">
+        <span class="pill">Buyer Representation</span>
+        <span class="pill">Seller & Listing</span>
+        <span class="pill">Property Photography</span>
+        <span class="pill">Wellness Lifestyle</span>
+        <span class="pill">Fitness & Body</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVICES ───────────────────────────────── -->
+  <section id="services" class="section section-alt">
+    <div class="services-hd">
+      <span class="tag">What I Offer</span>
+      <h2 class="section-h">Real Estate &amp;<br><em>Beyond</em></h2>
+      <p class="section-p">From finding your first home to building a personal brand, Miyoung brings the same intention and care to every client relationship.</p>
+    </div>
+
+    <!-- Primary: Real Estate -->
+    <div class="re-grid">
+      <div class="svc-card featured">
+        <div class="svc-icon">🏡</div>
+        <h3>Buyer Representation</h3>
+        <p>Full-service guidance from your first search to closing day. Miyoung advocates fiercely for your needs, your budget, and the home you deserve.</p>
+      </div>
+      <div class="svc-card featured">
+        <div class="svc-icon">🔑</div>
+        <h3>Seller &amp; Listing Services</h3>
+        <p>Strategic pricing, professional staging advice, and standout marketing — including Miyoung's own photography — to sell your home faster and for more.</p>
+      </div>
+      <div class="svc-card featured">
+        <div class="svc-icon">📐</div>
+        <h3>Investment &amp; Relocation</h3>
+        <p>Whether you're moving across town or across the state, or building a property portfolio, Miyoung brings sharp market insight and personal care to the process.</p>
+      </div>
+    </div>
+
+    <div class="svc-divider">
+      <img src="images/lotus.png" alt="Lotus blossom" style="width:56px;height:56px;object-fit:cover;border-radius:50%;flex-shrink:0;border:2px solid var(--border);" />
+      <span>Lifestyle &amp; Brand Services</span>
+    </div>
+
+    <!-- Secondary: Lifestyle -->
+    <div class="lifestyle-grid">
+      <div class="svc-card">
+        <div class="svc-icon">📷</div>
+        <h3>Property &amp; Real Estate Photography</h3>
+        <p>Listing images that stop the scroll. Every shot is composed to make buyers fall in love before they even walk through the door.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🌿</div>
+        <h3>Wellness &amp; Lifestyle Portraits</h3>
+        <p>Authentic personal brand photography for coaches, practitioners, and entrepreneurs who want visuals that reflect who they truly are.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">💪</div>
+        <h3>Fitness &amp; Body</h3>
+        <p>Dynamic, empowering imagery for athletes, trainers, and anyone on a transformation journey. Your strength, captured in its most authentic form.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS ────────────────────────────────── -->
+  <section id="process" class="section">
+    <div class="process-wrap">
+      <div>
+        <span class="tag">The Process</span>
+        <h2 class="section-h">From Search<br>to <em>Sold</em></h2>
+        <p class="section-p">Buying or selling a home should feel empowering, not overwhelming. Here's how Miyoung guides you through every step.</p>
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">01</span>
+            <div class="step-body">
+              <h3>Discovery Conversation</h3>
+              <p>A relaxed, no-pressure call to understand your goals, timeline, and what "home" really means to you. No scripts — just honest conversation.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">02</span>
+            <div class="step-body">
+              <h3>Search &amp; Strategy</h3>
+              <p>Curated listings, sharp negotiation, and proactive communication at every stage. You'll never feel in the dark or left behind.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">03</span>
+            <div class="step-body">
+              <h3>Close &amp; Settle In</h3>
+              <p>From accepted offer to keys in hand, Miyoung stays by your side — handling the details so you can focus on the excitement of what's next.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-visual">
+        <svg class="tree-svg" width="200" height="240" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="100" y1="240" x2="100" y2="90" stroke="#5C7A4E" stroke-width="4" stroke-linecap="round"/>
+          <line x1="100" y1="160" x2="45" y2="115" stroke="#5C7A4E" stroke-width="3" stroke-linecap="round"/>
+          <line x1="100" y1="135" x2="155" y2="90" stroke="#5C7A4E" stroke-width="3" stroke-linecap="round"/>
+          <line x1="100" y1="115" x2="58" y2="72" stroke="#5C7A4E" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="100" y1="108" x2="148" y2="64" stroke="#5C7A4E" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="100" cy="72" r="36" fill="#8B9E7E" opacity="0.45"/>
+          <circle cx="45" cy="108" r="24" fill="#8B9E7E" opacity="0.38"/>
+          <circle cx="155" cy="82" r="27" fill="#8B9E7E" opacity="0.38"/>
+          <circle cx="60" cy="60" r="20" fill="#5C7A4E" opacity="0.4"/>
+          <circle cx="148" cy="58" r="22" fill="#5C7A4E" opacity="0.4"/>
+        </svg>
+        <div class="process-visual-label">
+          <span>나무</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────── -->
+  <section id="stories" class="section testimonials-section">
+    <span class="tag">Client Stories</span>
+    <h2 class="section-h">Words from<br><em>Happy Clients</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">"Miyoung found us a home in a market where nothing was available. She was patient, relentless, and genuinely cared about what we needed. We couldn't have done it without her."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <span class="testi-name">Aiko &amp; David Tanaka</span>
+            <span class="testi-role">First-Time Homebuyers</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"She sold our home in 9 days — above asking price. Her photography made the listing look like a magazine spread. Miyoung is the only agent I'll ever work with."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <span class="testi-name">Marcus Reid</span>
+            <span class="testi-role">Home Seller</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"Beyond just finding me a property — Miyoung helped me think through what I actually wanted from my lifestyle. That perspective is rare and incredibly valuable."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <span class="testi-name">Sofia Laurent</span>
+            <span class="testi-role">Investment Property Buyer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ────────────────────────────────────── -->
+  <section id="cta" class="cta-section">
+    <span class="tag">Let's Talk</span>
+    <h2 class="section-h">Ready to Find<br>Where You <em>Belong?</em></h2>
+    <p class="section-p">Whether you're buying, selling, or just starting to explore — reach out. The first conversation is always free.</p>
+    <div class="cta-row">
+      <a href="tel:8056176199" class="btn-solid">Call 805-617-6199</a>
+      <a href="mailto:miyoung.nancarrow@gmail.com" class="btn-ghost">Send a Message</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">Na<em>mu</em></a>
+        <p>Real estate rooted in wellness, intention, and the belief that the right home can change your entire life.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Real Estate</h4>
+        <ul>
+          <li><a href="#">Buyer Representation</a></li>
+          <li><a href="#">Seller &amp; Listing</a></li>
+          <li><a href="#">Investment Properties</a></li>
+          <li><a href="#">Relocation Services</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Lifestyle</h4>
+        <ul>
+          <li><a href="#">Property Photography</a></li>
+          <li><a href="#">Wellness Portraits</a></li>
+          <li><a href="#">Fitness &amp; Body</a></li>
+          <li><a href="#">Brand Photography</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:8056176199">📞 805-617-6199</a></li>
+          <li><a href="mailto:miyoung.nancarrow@gmail.com">✉️ miyoung.nancarrow@gmail.com</a></li>
+          <li><a href="#">🕐 Available 24 / 7</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2024 Namu — Miyoung Nancarrow, Realtor. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
