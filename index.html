@@ -323,6 +323,20 @@
     .cta-row { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
 
     /* ── FOOTER ──────────────────────────────────── */
+    /* Coming Soon */
+    .coming-soon { background: var(--forest); text-align: center; padding: 8rem 5vw; }
+    .cs-inner { max-width: 680px; margin: 0 auto; }
+    .cs-features { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem 2rem; margin-bottom: 2.5rem; }
+    .cs-features li { color: var(--sage); font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; }
+    .cs-form { display: flex; gap: .75rem; max-width: 420px; margin: 0 auto; }
+    .cs-form input { flex: 1; padding: .85rem 1.25rem; border: 1px solid rgba(139,158,126,.4); border-radius: 4px; background: rgba(255,255,255,.07); color: var(--cream); font-size: .9rem; outline: none; }
+    .cs-form input::placeholder { color: rgba(253,250,246,.4); }
+    .cs-form input:focus { border-color: var(--sage); }
+    .cs-form button { padding: .85rem 1.75rem; background: var(--sage); color: var(--forest); border: none; border-radius: 4px; font-size: .85rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: background .2s; }
+    .cs-form button:hover { background: var(--stone); }
+    .cs-note { margin-top: 1rem; font-size: .78rem; color: rgba(253,250,246,.35); }
+    @media(max-width:480px) { .cs-form { flex-direction: column; } }
+
     footer { background: var(--charcoal); color: rgba(253,250,246,.55); padding: 4rem 5vw 2rem; }
     .footer-grid {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3.5rem;
@@ -597,6 +611,29 @@
     </div>
   </section>
 
+  <!-- COMING SOON -->
+  <section class="coming-soon">
+    <div class="cs-inner">
+      <span class="tag" style="color:var(--sage);border-color:var(--sage);">나무 — Growing</span>
+      <h2 class="section-h" style="color:var(--cream);">Something Bigger<br>Is <em>Coming</em></h2>
+      <p class="section-p" style="color:rgba(253,250,246,.72);max-width:500px;margin:0 auto 2.5rem;">
+        Namu is expanding into a full wellness platform — daily inspiration, horoscope readings, a curated gallery, Korean language sessions, and more. Be the first to know.
+      </p>
+      <ul class="cs-features">
+        <li>✦ Daily Inspiration &amp; Quotes</li>
+        <li>✦ Horoscope Readings (Western · Eastern · Greek)</li>
+        <li>✦ Photography &amp; Art Gallery</li>
+        <li>✦ Korean Language Sessions</li>
+        <li>✦ Yoga &amp; Wellness Booking</li>
+      </ul>
+      <form class="cs-form" onsubmit="handleWaitlist(event)">
+        <input type="email" placeholder="your@email.com" required aria-label="Email address" />
+        <button type="submit">Notify Me</button>
+      </form>
+      <p class="cs-note">No spam. Just the launch announcement.</p>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer id="contact">
     <div class="footer-grid">
@@ -638,6 +675,18 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    function handleWaitlist(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const input = e.target.querySelector('input');
+      btn.textContent = "You're on the list!";
+      btn.style.background = 'var(--deep-sage)';
+      input.disabled = true;
+      btn.disabled = true;
+    }
+  </script>
 
 </body>
 </html>
